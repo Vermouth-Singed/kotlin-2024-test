@@ -2,7 +2,8 @@ package com.example.sample.application
 
 import com.example.sample.adapter.`in`.web.dto.LoginRequestDTO
 import com.example.sample.adapter.out.persistence.entity.LoginEntity
-import com.example.sample.adapter.out.persistence.repository.LoginJPA
+//import com.example.sample.adapter.out.persistence.repository.LoginJPA
+import com.example.sample.adapter.out.persistence.repository.LoginQuerydsl
 import com.example.sample.application.port.`in`.LogInUseCase
 import com.example.sample.application.port.`in`.LogOutUseCase
 import com.example.sample.application.port.`in`.LoginCheckUseCase
@@ -13,7 +14,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class LoginService (
-    private val loginJPA: LoginJPA,
+//    private val loginJPA: LoginJPA,
+    private val loginQuerydsl: LoginQuerydsl,
 ): LoginCheckUseCase, LogInUseCase, LogOutUseCase {
 
     override fun loginCheck(loginVO: Any?): LoginCheckUseCase.Result {
@@ -25,7 +27,8 @@ class LoginService (
     }
 
     override fun login(httpSession: HttpSession, loginRequestDTO: LoginRequestDTO): LogInUseCase.Result {
-        val loginEntity: LoginEntity = loginJPA.findById(loginRequestDTO.email).orElse(LoginEntity(email = ""))
+//        val loginEntity: LoginEntity = loginJPA.findById(loginRequestDTO.email).orElse(LoginEntity(email = ""))
+        val loginEntity: LoginEntity = loginQuerydsl.findById(loginRequestDTO.email)
 
         val email: String = loginEntity.email
         val success: Boolean = email != ""
