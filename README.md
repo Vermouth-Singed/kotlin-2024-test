@@ -1,3 +1,11 @@
+### 계층형 아키텍처에서 헥사고날 아키텍처로 변경하게되면 기대한 점
+- 브랜치 병합할 때 충돌을 방지할 수 있다?
+- 나중에 MSA 로 분리할 때 편하다?
+- API 별로 DTO 를 분리할 수 있어 필요한 값들만 보낼 수 있다?
+### 지금까지 헥사고날 테스트하고 느낀 점
+- 브랜치 병합 때 충돌은 어차피 컨트롤러와 서비스에서 난다!
+- MSA 로 분리할거면 처음부터 멀티 프로젝트 구조로 계층형으로 만들면 된다!
+- API 별 DTO 구분은 세부 패키지 추가를 통해 분리할 수 있다!
 ### Retrofit2 세팅
 1. build.gradle.kts 세팅
 ```
@@ -58,4 +66,4 @@ fun sample(): LoginCheckUseCase.Result {
 @GetMapping("/test")
 fun test(): String = "test"
 ```
-5. execute() 는 동기화, enqueue 비동기는 조만간 업로드 예정!
+5. execute() 는 동기화, enqueue 비동기
